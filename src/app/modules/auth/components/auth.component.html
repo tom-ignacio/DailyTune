@@ -1,0 +1,19 @@
+<div class="bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center h-1/2">
+    <div class="flex flex-col items-center justify-center gap-5">
+        <p class="font-sans text-7xl text-white select-none font-bold">DailyTune</p>
+        <p class="font-sans text-xl text-white select-none font-light text-center">Remember the song that made your day!</p>
+    </div>
+</div>
+<div class="flex flex-col items-center justify-center h-1/2 gap-5 pb-56 pt-10">
+    <p class="font-sans text-xl text-gray-500 select-none font-light text-center">
+        Enter your last.fm username and see all stats for the music you've listened every day
+    </p>
+    <mat-form-field appearance="outline" class="input-large">
+        <mat-label>Last.fm username</mat-label>
+        <input matInput placeholder="Enter your last.fm username" [formControl]="userFormControl">
+        <button matSuffix mat-icon-button (click)="logIn()" [disabled]="loggedIn">
+            <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+        <mat-error>This username is invalid</mat-error>
+    </mat-form-field>
+</div>
