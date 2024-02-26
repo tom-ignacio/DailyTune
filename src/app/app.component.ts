@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'DailyTune';
   authorizedUser: boolean = false;
+  showFiller = false;
 
   ngOnInit(): void {
     if (localStorage.getItem('username')) {

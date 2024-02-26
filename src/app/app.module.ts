@@ -6,6 +6,9 @@ import { AuthModule } from './modules/auth/auth.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './modules/home/home.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { HomeModule } from './modules/home/home.module';
     AppRoutingModule,
     AuthModule,
     HomeModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [
     provideAnimationsAsync()
