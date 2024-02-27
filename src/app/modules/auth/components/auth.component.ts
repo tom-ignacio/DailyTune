@@ -24,7 +24,7 @@ export class AuthComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('username')) {
+    if (localStorage.getItem('user')) {
       this.router.navigate(['home']);
     }
   }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { State } from '../../states/base/state';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthState } from '../../states/auth/auth.state';
 
 @Injectable({
   providedIn: 'root',
@@ -13,35 +14,36 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private state: State,
+    private authState: AuthState,
     public router: Router,
   ) {}
 
   public getAuthLoading$(): Observable<boolean> {
-    return this.state.getLoading$();
+    return this.authState.getLoading$();
   }
 
   public getAuth$(): Observable<any> {
-    return this.state.getState$();
+    return this.authState.getState$();
   }
 
   public getAuthAPI(username: string | null, unsubscribe: Subject<void>) {
-    this.state.setState(null);
-    this.state.setLoading(true);
+    this.authState.setState(null);
+    this.authState.setLoading(true);
     this.httpClient
       .get<any>(`${this.ENDPOINT_AUTH}${username}/${this.API_KEY}`)
       .pipe(takeUntil(unsubscribe))
       .subscribe({
         next: (response: any) => {
           if (!response.error) {
-            localStorage.setItem('username', response.user.name)
+            this.authState.setState(response.user);
+            localStorage.setItem('user', JSON.stringify(response.user))
             this.router.navigate(['home']);
           }
         },
         error: (err) => {
         },
         complete: () => {
-            this.state.setLoading(false);
+            this.authState.setLoading(false);
         },
       });
   }

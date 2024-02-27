@@ -1,19 +1,19 @@
 <ng-container *ngIf="authorizedUser; else authBlock">
     <mat-drawer-container class="h-full" autosize>
-        <mat-drawer #drawer mode="side" class="primary h-full">
+        <!-- <mat-drawer #drawer mode="side" class="primary h-full">
             <div class="p-2 text-white">
                 <p>Menu</p>
             </div>
-        </mat-drawer>
+        </mat-drawer> -->
     
         <mat-toolbar class="primary-gradient">
-            <button mat-icon-button
+            <!-- <button mat-icon-button
                 (click)="drawer.toggle()">
                 <mat-icon class="text-white">menu</mat-icon>
-            </button>
+            </button> -->
             <p class="text-white text-2xl font-medium select-none mx-3">DailyTune</p>
         </mat-toolbar>
-        <div class="p-2">
+        <div class="p-5">
             <router-outlet></router-outlet>
         </div>
 

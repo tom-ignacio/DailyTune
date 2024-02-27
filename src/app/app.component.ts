@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   showFiller = false;
 
   ngOnInit(): void {
-    if (localStorage.getItem('username')) {
+    if (localStorage.getItem('user')) {
       this.authorizedUser = true;
     }
   }

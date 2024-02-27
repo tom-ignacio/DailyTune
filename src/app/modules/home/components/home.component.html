@@ -1,1 +1,48 @@
-Home works!
+<div *ngIf="recentTracks" class="grid grid-cols-3 gap-3">
+    <mat-card class="p-3 items-center col-span-3 gap-1">
+        <small class="font-sans text-gray-500 select-none font-normal text-center">
+            Your most recent song is
+        </small>
+        <img *ngIf="recentTracks[0].image[3]['#text']" [src]="recentTracks[0].image[3]['#text']">
+        <p class="font-sans text-xl text-black select-none font-bold text-center">
+            {{ recentTracks[0].name }} by {{ recentTracks[0].artist['#text'] }}
+        </p>
+    </mat-card>
+    <mat-card class="p-3 items-center gap-1">
+        <small class="font-sans text-gray-500 select-none font-normal text-center">
+            Total albums
+        </small>
+        <p class="font-sans text-xl text-black select-none font-bold text-center">
+            {{ userInfo.album_count }}
+        </p>
+    </mat-card>
+    <mat-card class="p-3 items-center gap-1">
+        <small class="font-sans text-gray-500 select-none font-normal text-center">
+            Total artists
+        </small>
+        <p class="font-sans text-xl text-black select-none font-bold text-center">
+            {{ userInfo.artist_count }}
+        </p>
+    </mat-card>
+    <mat-card class="p-3 items-center gap-1">
+        <small class="font-sans text-gray-500 select-none font-normal text-center">
+            Total tracks
+        </small>
+        <p class="font-sans text-xl text-black select-none font-bold text-center">
+            {{ userInfo.track_count }}
+        </p>
+    </mat-card>
+    <mat-card class="p-3 items-center col-span-3 gap-1">
+        <div class="flex flex-row gap-2 items-center">
+            <img *ngIf="weeklyTracks[0].image[2]['#text']" [src]="weeklyTracks[0].image[2]['#text']" class="size-28">
+            <div>
+                <small class="font-sans text-gray-500 select-none font-normal text-center">
+                    Your weekly track is
+                </small>
+                <p class="font-sans text-xl text-black select-none font-bold text-center">
+                    {{ weeklyTracks[0].name }} by {{ weeklyTracks[0].artist['#text'] }}
+                </p>
+            </div>
+        </div>
+    </mat-card>
+</div>
