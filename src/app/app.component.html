@@ -1,16 +1,25 @@
 <ng-container *ngIf="authorizedUser; else authBlock">
     <mat-drawer-container class="h-full" autosize>
-        <!-- <mat-drawer #drawer mode="side" class="primary h-full">
-            <div class="p-2 text-white">
-                <p>Menu</p>
-            </div>
-        </mat-drawer> -->
+        <mat-drawer #drawer mode="over" class="primary h-full !w-56">
+                <div class="flex flex-row items-center gap-3 p-5">
+                    <mat-icon class="text-white">person</mat-icon>
+                    <span class="text-white font-medium">Artists</span>
+                </div>
+                <div class="flex flex-row items-center gap-3 p-5">
+                    <mat-icon class="text-white">album</mat-icon>
+                    <span class="text-white font-medium">Albums</span>
+                </div>
+                <div class="flex flex-row items-center gap-3 p-5">
+                    <mat-icon class="text-white">music_note</mat-icon>
+                    <span class="text-white font-medium">Tracks</span>
+                </div>
+        </mat-drawer>
     
-        <mat-toolbar class="primary-gradient">
-            <!-- <button mat-icon-button
+        <mat-toolbar class="primary-gradient !h-20">
+            <button mat-icon-button
                 (click)="drawer.toggle()">
                 <mat-icon class="text-white">menu</mat-icon>
-            </button> -->
+            </button>
             <p class="text-white text-2xl font-medium select-none mx-3">DailyTune</p>
         </mat-toolbar>
         <div class="p-5">

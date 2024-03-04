@@ -15,6 +15,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   userInfo: any;
   recentTracks: any;
   weeklyTracks: any;
+  weeklyArtists: any;
 
   constructor(
     public router: Router,
@@ -60,6 +61,16 @@ export class HomeComponent extends BaseComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             this.weeklyTracks = response;
+          }
+        });
+      
+      this.statsService.getWeeklyArtistsAPI(request, this.ngUnsubscribe);
+      this.statsService
+        .getWeeklyArtists$()
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((response: any) => {
+          if (response) {
+            this.weeklyArtists = response;
           }
         });
     }

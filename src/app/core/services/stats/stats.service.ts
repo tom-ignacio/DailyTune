@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { StatsState } from '../../states/stats/stats.state';
 import { RecentTracksState } from '../../states/stats/recenttracks.state';
 import { WeeklyTracksState } from '../../states/stats/weeklytracks.state';
+import { WeeklyArtistsState } from '../../states/stats/weeklyartists.state';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +15,14 @@ export class StatsService {
   private readonly API_KEY = `&api_key=680d8f8b1b6a9e0d8599a0830174afe6&format=json`;
   private readonly ENDPOINT_RECENT = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=`
   private readonly ENDPOINT_WEEKLYTRACK = `https://ws.audioscrobbler.com/2.0/?method=user.getweeklytrackchart&user=`
+  private readonly ENDPOINT_WEEKLYARTIST = `https://ws.audioscrobbler.com/2.0/?method=user.getweeklyartistchart&user=`
+
 
   constructor(
     private httpClient: HttpClient,
-    private statsState: StatsState,
     private recentTracksState: RecentTracksState,
     private weeklyTracksState: WeeklyTracksState,
+    private weeklyArtistsState: WeeklyArtistsState,
     public router: Router,
   ) {}
 
@@ -75,6 +78,34 @@ export class StatsService {
         },
         complete: () => {
             this.weeklyTracksState.setLoading(false);
+        },
+      });
+  }
+
+  public getWeeklyArtistsLoading$(): Observable<boolean> {
+    return this.weeklyArtistsState.getLoading$();
+  }
+
+  public getWeeklyArtists$(): Observable<any | null> {
+    return this.weeklyArtistsState.getState$();
+  }
+
+  public getWeeklyArtistsAPI(data: any, unsubscribe: Subject<void>) {
+    this.weeklyArtistsState.setState(null);
+    this.weeklyArtistsState.setLoading(true);
+    this.httpClient
+      .get<any>(`${this.ENDPOINT_WEEKLYARTIST}${data.username}${this.API_KEY}`)
+      .pipe(takeUntil(unsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          if (!response.error) {
+            this.weeklyArtistsState.setState(response.weeklyartistchart.artist);
+          }
+        },
+        error: (err) => {
+        },
+        complete: () => {
+            this.weeklyArtistsState.setLoading(false);
         },
       });
   }

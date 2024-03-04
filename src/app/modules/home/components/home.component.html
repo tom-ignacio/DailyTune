@@ -45,4 +45,28 @@
             </div>
         </div>
     </mat-card>
+    <mat-card class="p-3 items-center col-span-2 gap-1">
+        <div class="flex flex-row gap-2 items-center">
+            <div>
+                <small class="font-sans text-gray-500 select-none font-normal text-center">
+                    Your weekly artist is
+                </small>
+                <p class="font-sans text-xl text-black select-none font-bold text-center">
+                    {{ weeklyArtists[0].name }}
+                </p>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="p-3 items-center gap-1">
+        <div class="flex flex-row gap-2 items-center">
+            <div>
+                <small class="font-sans text-gray-500 select-none font-normal text-center">
+                    Play count
+                </small>
+                <p class="font-sans text-xl text-black select-none font-bold text-center">
+                    {{ weeklyArtists[0].playcount }}
+                </p>
+            </div>
+        </div>
+    </mat-card>
 </div>
